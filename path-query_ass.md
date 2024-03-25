@@ -96,7 +96,6 @@ async def read_items(category: str = None, page: int = 1, sort: str = None):
 |                         | @app.get("/users/{user_id}")                            | @app.get("/search")                                      |
 |                         | async def get_user(user_id: int):                       | async def search_items(query: str, page: int = 1):       |
 |                         |     # Endpoint logic                                    |     # Endpoint logic                                    |
-| ```                     | ```                                                     | ```                                                       |
 
 - This table summarizes the key differences between path parameters and query parameters in terms of their location in the URL, syntax, usage, requirement, and provides examples of their usage in FastAPI route declarations.
 
