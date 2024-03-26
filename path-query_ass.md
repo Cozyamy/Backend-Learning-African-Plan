@@ -95,7 +95,6 @@ async def read_items(category: str = None, page: int = 1, sort: str = None):
 | Example Usage in Python | ```python                                                | ```python                                                |
 |                         | @app.get("/users/{user_id}")                            | @app.get("/search")                                      |
 |                         | async def get_user(user_id: int):                       | async def search_items(query: str, page: int = 1):       |
-|                         |     # Endpoint logic                                    |     # Endpoint logic                                    |
 
 - This table summarizes the key differences between path parameters and query parameters in terms of their location in the URL, syntax, usage, requirement, and provides examples of their usage in FastAPI route declarations.
 
@@ -113,3 +112,103 @@ app = FastAPI()
 async def read_items(category: str = "electronics", page: int = 1, sort: str = "name"):
     """
     Endpoint to retrieve items with optional query
+```
+## Provide an example of a FastAPI route with query parameters.
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/items/")
+async def read_items(category: str = None, page: int = 1, sort: str = None):
+    """
+    Endpoint to retrieve items with optional query parameters.
+    """
+    return {"category": category, "page": page, "sort": sort}
+```
+
+# Combining Path and Query Parameters:
+## Can a FastAPI route have both path parameters and query parameters? If yes, provide an example.
+
+
+- Yes, a FastAPI route can have both path parameters and query parameters. 
+
+```python 
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int, category: str = None, page: int = 1, sort: str = None):
+    """
+    Endpoint to retrieve an item with optional query parameters.
+    """
+    return {"item_id": item_id, "category": category, "page": page, "sort": sort}
+```
+## What is the order of precedence if a parameter is defined both in the path and as a query parameter?
+
+- FastAPI will prioritize the values provided in the path parameters over those provided as query parameters. The query parameter will be used if no corresponding path parameter is present.
+
+# Data Types and Validation:
+## How does FastAPI handle data types and validation for path and query parameters?
+
+- FastAPI provides automatic data type conversion and validation for both path and query parameters.
+- Cases when data type does not match or fails validation, FastAPI automatically returns an error response with details about the validation error. The error response includes information about which parameter failed validation, the expected data type, and any additional validation rules that were violated.
+
+## What are some common data types that can be used for path and query parameters?
+
+1. **Path Parameters**: int, float, str
+
+2. **Query Parameters**: int, float, str, bool, datetime, list, set, tuple
+
+## How can you enforce validation rules on path and query parameters in FastAPI?
+
+- Validation rules on path and query parameters can be enforced using Python type hints and Pydantic models. Pydantic is a data validation library that FastAPI integrates with, allowing you to define data structures with validation rules easily. It allows you to specify data types, validation rules, default values, and more for your parameters. FastAPI automatically validates incoming requests against these models and returns appropriate error responses if validation fails.
+
+# Usage and Benefits:
+##  In what scenarios would you use path parameters over query parameters, and vice versa?
+
+- Path parameters are used when the parameter is essential for identifying the resource or endpoint and contributes to the URL's hierarchical structure. For instance, /users/{user_id} is a clear indication that the endpoint retrieves a specific user based on their ID.
+- Query parameters are used for optional filtering, sorting, or pagination purposes, offering flexibility and convenience without affecting the URL's semantic meaning. For example, /items?category=electronics&page=1 allows users to filter items by category and paginate through the results
+
+## What are the benefits of using path and query parameters in API design?
+**Benefits of Path Parameters:**
+
+1. Path parameters are crucial for identifying specific endpoints within the API.
+
+2. Path parameters contribute to a clean and meaningful URL structure, making it easier for users to understand and navigate the API.
+
+3. Path parameters enhance the semantic clarity of the API endpoints by directly incorporating essential parameters into the URL path.
+
+4. Search engines often prioritize URLs that contain meaningful path parameters, leading to potential SEO benefits by improving the discoverability and ranking of API endpoints.
+
+**Benefits of Query Parameters:**
+
+1. Query parameters offer flexibility and customization options by allowing users to pass additional parameters without affecting the URL structure. They enable users to tailor API requests based on their specific requirements.
+
+2. It allows users to include additional information such as filters, sorting criteria, or pagination parameters as needed.
+
+3. Query parameters are easy to use and understand, as they appear after the "?" symbol in the URL and can be appended or modified without impacting the URL hierarchy.
+
+## Can you provide examples of real-world use cases where path and query parameters would be employed effectively?
+- Path parameters to retrieve product details in e-commerce. For instance, /products/{product_id} can be used to fetch information about a particular product based on its unique identifier.
+- While query parameters can be used to filter search results based on various criteria. For instance, /products?category=electronics&brand=Apple can filter products by category and brand.
+
+
+# Error Handling
+## How does FastAPI handle errors related to missing or invalid path/query parameters
+- FastAPI automatically handles errors related to missing or invalid path/query parameters by providing informative error messages and appropriate HTTP status codes. 
+*** Missing Parameters: ***
+- If a required path parameter is missing from the request URL, FastAPI returns a 422 Unprocessable Entity error response. The response includes details about the missing parameter, making it easy for the client to identify and rectify the issue.
+- Similarly, if a required query parameter is missing, FastAPI returns a 422 Unprocessable Entity error response with details about the missing parameter.
+
+*** Invalid Parameters: ***
+- If a path or query parameter fails validation (e.g., due to incorrect data type, etc.), FastAPI automatically returns a 422 Unprocessable Entity error response. The response includes details about the validation error, such as the parameter name, expected data type, and any additional validation rules that were violated.
+
+*** Custom Error Handling: ***
+- FastAPI allows for custom error handling using exception handling mechanisms. You can define custom exception handlers to intercept and handle specific types of errors gracefully, providing custom error responses as needed.
+
+## Can you customize error responses for cases where required parameters are missing or validation fails?
+- 
+Yes, you can customize error responses for cases where required parameters are missing or validation fails. This customization can be achieved by defining custom exception handlers to intercept specific types of errors and provide custom error responses.
