@@ -1,5 +1,3 @@
-Sure, here's the revised version:
-
 # Path Parameters:
 ## What are path parameters in FastAPI?
 - In FastAPI, path parameters are parts of the URL path that can change and are used to capture specific values provided by the client. They are denoted by curly braces `{}` within the route definition. Path parameters allow you to define routes that accept dynamic values, making your API more flexible and powerful.
