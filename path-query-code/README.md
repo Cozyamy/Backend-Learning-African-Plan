@@ -1,4 +1,4 @@
-# This README provides examples of various FastAPI functionalities with descriptions and implementation details for each section. Each section is organized with a title, description, and code implementation. You can use this README to understand how to implement different features in FastAPI and reference it for your projects.
+### This README provides examples of various FastAPI functionalities with descriptions and implementation details for each section. Each section is organized with a title, description, and code implementation. You can use this README to understand how to implement different features in FastAPI and reference it for your projects.
 
 # FastAPI Examples
 
