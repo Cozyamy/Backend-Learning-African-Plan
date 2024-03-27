@@ -223,25 +223,15 @@ async def get_user(user_id: int = Path(..., title="The ID of the user to retriev
 
 ```python
 from fastapi import FastAPI, Query
-from datetime import datetime
+from pydantic import constr
 
 app = FastAPI()
 
-def is_valid_date(date_string):
-    try:
-        datetime.strptime(date_string, "%Y-%m-%d")
-        return True
-    except ValueError:
-        return False
-
 @app.get("/items/")
-async def read_items(start_date: str = Query(..., description="Start date in YYYY-MM-DD format")):
+async def read_items(start_date: constr(regex=r"\d{4}-\d{2}-\d{2}")):
     """
     Retrieve items based on start date.
     """
-    if not is_valid_date(start_date):
-        raise ValueError("Invalid date format. Please provide the start date in YYYY-MM-DD format.")
-
     return {"start_date": start_date}
 ```
 
