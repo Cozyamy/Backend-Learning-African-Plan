@@ -198,17 +198,16 @@ async def read_item(item_id: int, category: str = None, page: int = 1, sort: str
 
 # Error Handling
 ## How does FastAPI handle errors related to missing or invalid path/query parameters
-- FastAPI automatically handles errors related to missing or invalid path/query parameters by providing informative error messages and appropriate HTTP status codes. 
-*** Missing Parameters: ***
+- FastAPI automatically handles errors related to missing or invalid path/query parameters by providing informative error messages and appropriate HTTP status codes.
+**Missing Parameters:**
 - If a required path parameter is missing from the request URL, FastAPI returns a 422 Unprocessable Entity error response. The response includes details about the missing parameter, making it easy for the client to identify and rectify the issue.
 - Similarly, if a required query parameter is missing, FastAPI returns a 422 Unprocessable Entity error response with details about the missing parameter.
 
-*** Invalid Parameters: ***
+**Invalid Parameters:**
 - If a path or query parameter fails validation (e.g., due to incorrect data type, etc.), FastAPI automatically returns a 422 Unprocessable Entity error response. The response includes details about the validation error, such as the parameter name, expected data type, and any additional validation rules that were violated.
 
-*** Custom Error Handling: ***
+**Custom Error Handling:**
 - FastAPI allows for custom error handling using exception handling mechanisms. You can define custom exception handlers to intercept and handle specific types of errors gracefully, providing custom error responses as needed.
 
 ## Can you customize error responses for cases where required parameters are missing or validation fails?
-- 
-Yes, you can customize error responses for cases where required parameters are missing or validation fails. This customization can be achieved by defining custom exception handlers to intercept specific types of errors and provide custom error responses.
+- Yes, you can customize error responses for cases where required parameters are missing or validation fails. This customization can be achieved by defining custom exception handlers to intercept specific types of errors and provide custom error responses.
