@@ -1,8 +1,6 @@
-# Backend-Learning-African-Plan
+# FastAPI Path and Query Parameters:
 
 This repository contains examples and explanations of various functionalities in FastAPI, a modern, fast (high-performance), web framework for building APIs. The README provides detailed insights into the implementation of different features in FastAPI, including path parameters, query parameters, data validation, error handling, and the usage and benefits of each feature.
-
-## Path Query Code Directory:
 
 ### Path Parameters:
 - Describes what path parameters are in FastAPI and how they are defined in route declarations.
